@@ -1,1 +1,1 @@
-New project
+job tracker for personal use
