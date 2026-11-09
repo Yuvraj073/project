@@ -1,5 +1,9 @@
 
 from fastapi import FastAPI
+from fastapi import HTTPException
+from sqlalchemy.exc import SQLAlchemyError
+
+from database import check_database_connection
 
 app = FastAPI(
     title="JobTrack API",
@@ -19,3 +23,15 @@ def home():
 @app.get("/health")
 def health_check():
     return {"status": "healthy"}
+
+
+@app.get("/health/db")
+def database_health_check():
+    try:
+        check_database_connection()
+    except SQLAlchemyError:
+        raise HTTPException(
+            status_code=503,
+            detail="Database unavailable",
+        )
+    return {"status": "healthy", "database": "available"}
