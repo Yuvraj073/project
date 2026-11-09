@@ -13,6 +13,17 @@ __pycache__/
 .coverage
 htmlcov/
 
+# Build and packaging output
+build/
+dist/
+*.egg-info/
+
+# Local database and logs
+*.db
+*.sqlite
+*.sqlite3
+*.log
+
 # Type checker and linter caches
 .mypy_cache/
 .ruff_cache/
